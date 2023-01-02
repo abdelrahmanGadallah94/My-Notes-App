@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_notes_app_bar.dart';
+import '../widgets/custom_notes_card.dart';
 
 class HomeNotesScreen extends StatelessWidget {
   const HomeNotesScreen({Key? key}) : super(key: key);
@@ -11,8 +12,10 @@ class HomeNotesScreen extends StatelessWidget {
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Column(
-          children: const [
+          children:  const [
             CustomNotesAppBar(),
+            SizedBox(height: 20,),
+            CustomNotesCard(),
           ],
         ),
       )),

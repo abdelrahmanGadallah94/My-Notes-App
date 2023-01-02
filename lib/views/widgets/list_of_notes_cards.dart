@@ -9,10 +9,14 @@ class MyListOfNotesCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * .8,
-      child: ListView.builder(
-        itemBuilder: (context, index) => const CustomNotesCard(),
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: ListView.builder(
+          itemCount: 10,
+          padding: EdgeInsets.zero,
+          itemBuilder: (context, index) => const CustomNotesCard(),
+        ),
       ),
     );
   }

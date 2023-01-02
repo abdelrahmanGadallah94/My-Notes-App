@@ -19,6 +19,9 @@ class NotesApp extends StatelessWidget {
         AppRoutes.editNotesRoute: (context) => const EditNotesScreen(),
       },
       initialRoute: AppRoutes.homeNotesRoute,
+      theme: ThemeData(
+        brightness: Brightness.dark
+      ),
     );
   }
 }

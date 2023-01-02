@@ -11,6 +11,7 @@ class CustomNotesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 15,bottom: 15,left: 15),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
           color: AppColors.kCustomCardColor,
           borderRadius: BorderRadius.circular(20)

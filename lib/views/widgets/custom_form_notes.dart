@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../control/validation_method.dart';
 import '../settings/app_strings.dart';
 import 'custom_button.dart';
 import 'custom_text_form_field.dart';
@@ -12,7 +13,6 @@ class CustomFormNotes extends StatefulWidget {
 }
 
 class _CustomFormNotesState extends State<CustomFormNotes> {
-
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
@@ -23,13 +23,11 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
         autovalidateMode: autoValidateMode,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children:  [
+          children: [
             CustomTextFormField(
-              onChanged: (data){
-
-              },
-              validator: (data){
-                if(data?.isEmpty ?? true){
+              onChanged: (data) {},
+              validator: (data) {
+                if (data?.isEmpty ?? true) {
                   return AppStrings.requiredField;
                 }
                 return null;
@@ -41,11 +39,9 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
               height: 15,
             ),
             CustomTextFormField(
-              onChanged: (data){
-
-              },
-              validator: (data){
-                if(data?.isEmpty ?? true){
+              onChanged: (data) {},
+              validator: (data) {
+                if (data?.isEmpty ?? true) {
                   return AppStrings.requiredField;
                 }
                 return null;
@@ -57,12 +53,8 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
               height: 30,
             ),
             InkWell(
-              onTap: (){
-                if(formKey.currentState!.validate()){
-                  formKey.currentState!.save();
-                }else{
-                  autoValidateMode = AutovalidateMode.always;
-                }
+              onTap: () {
+                validation(formKey, autoValidateMode);
               },
               child: const CustomButton(),
             ),
@@ -70,4 +62,3 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
         ));
   }
 }
-

@@ -52,11 +52,10 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
             const SizedBox(
               height: 30,
             ),
-            InkWell(
+            CustomButton(
               onTap: () {
                 validation(formKey, autoValidateMode);
               },
-              child: const CustomButton(),
             ),
           ],
         ));

@@ -3,9 +3,10 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:my_notes_app/views/screens/edit_notes_screen.dart';
 import 'package:my_notes_app/views/screens/notes_home_screen.dart';
 import 'package:my_notes_app/views/settings/app_routes.dart';
+import 'package:my_notes_app/views/settings/app_strings.dart';
 void main() async{
   await Hive.initFlutter();
-  await Hive.openBox('Notes');
+  await Hive.openBox(AppStrings.kNotesBox);
   runApp(const NotesApp());
 }
 

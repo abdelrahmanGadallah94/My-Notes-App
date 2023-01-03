@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:my_notes_app/cubit/add_notes_cubit.dart';
 import 'package:my_notes_app/simple_bloc_observer.dart';
 import 'package:my_notes_app/views/screens/edit_notes_screen.dart';
 import 'package:my_notes_app/views/screens/notes_home_screen.dart';
@@ -9,7 +8,7 @@ import 'package:my_notes_app/views/settings/app_strings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'model/notes_model.dart';
 
-void main() async{
+void main() async {
   Bloc.observer = SimpleBlocObserver();
   await Hive.initFlutter();
   Hive.registerAdapter(NotesModelAdapter());
@@ -22,21 +21,14 @@ class NotesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => AddNotesCubit(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        routes: {
-          AppRoutes.homeNotesRoute: (context) => const HomeNotesScreen(),
-          AppRoutes.editNotesRoute: (context) => const EditNotesScreen(),
-        },
-        initialRoute: AppRoutes.homeNotesRoute,
-        theme: ThemeData(
-            brightness: Brightness.dark
-        ),
-      ),
-
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      routes: {
+        AppRoutes.homeNotesRoute: (context) => const HomeNotesScreen(),
+        AppRoutes.editNotesRoute: (context) => const EditNotesScreen(),
+      },
+      initialRoute: AppRoutes.homeNotesRoute,
+      theme: ThemeData(brightness: Brightness.dark),
     );
   }
 }
-

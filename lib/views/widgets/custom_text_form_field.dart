@@ -6,10 +6,10 @@ class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final int maxLines;
   final String? Function(String?)? validator;
-  final void Function(String?)? onSaved;
+  final void Function(String?)? onChanged;
   const CustomTextFormField({
     this.validator,
-    this.onSaved,
+    this.onChanged,
     Key? key,
     required this.hintText,
     required this.maxLines
@@ -19,7 +19,7 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       validator: validator,
-      onSaved: onSaved,
+      onSaved: onChanged,
       maxLines: maxLines,
       cursorColor: AppColors.kCustomCardColor,
       cursorHeight: 30,

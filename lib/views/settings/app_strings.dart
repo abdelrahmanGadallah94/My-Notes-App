@@ -6,4 +6,5 @@ class AppStrings{
   static const String title = "title:";
   static const String content = "content:";
   static const String addNotes = "Add Notes";
+  static const String requiredField = "This is a required field";
 }

@@ -28,7 +28,7 @@ class HomeNotesScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 15, top: 50),
+        padding: const EdgeInsets.only(left: 15, right: 15, top: 60),
         child: Column(
           children: const [
             CustomNotesAppBar(),

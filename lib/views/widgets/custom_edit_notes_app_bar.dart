@@ -24,7 +24,9 @@ class CustomEditNotesAppBar extends StatelessWidget {
             color: AppColors.kBlackColor.withOpacity(.2),
             borderRadius: BorderRadius.circular(30),
           ),
-          child: IconButton(onPressed: (){}, icon: const Icon(Icons.check,size: 30,)),
+          child: IconButton(onPressed: (){
+            Navigator.pop(context);
+          }, icon: const Icon(Icons.check,size: 30,)),
         ),
       ],
     );

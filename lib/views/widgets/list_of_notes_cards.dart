@@ -12,7 +12,7 @@ class MyListOfNotesCards extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.only(top: 30),
         child: ListView.builder(
           itemCount: 10,
           padding: EdgeInsets.zero,

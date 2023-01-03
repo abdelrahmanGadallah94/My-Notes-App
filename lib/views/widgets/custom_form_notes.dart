@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_notes_app/cubit/add_notes_cubit.dart';
+import 'package:my_notes_app/model/notes_model.dart';
 
 import '../../control/validation_method.dart';
+import '../settings/app_colors.dart';
 import '../settings/app_strings.dart';
 import 'custom_button.dart';
 import 'custom_text_form_field.dart';
@@ -18,6 +22,7 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
 
   @override
   Widget build(BuildContext context) {
+    String ?title, subtitle;
     return Form(
         key: formKey,
         autovalidateMode: autoValidateMode,
@@ -25,7 +30,9 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomTextFormField(
-              onChanged: (data) {},
+              onSaved: (data) {
+                title = data;
+              },
               validator: (data) {
                 if (data?.isEmpty ?? true) {
                   return AppStrings.requiredField;
@@ -39,7 +46,9 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
               height: 15,
             ),
             CustomTextFormField(
-              onChanged: (data) {},
+              onSaved: (data) {
+                subtitle = data;
+              },
               validator: (data) {
                 if (data?.isEmpty ?? true) {
                   return AppStrings.requiredField;
@@ -55,6 +64,8 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
             CustomButton(
               onTap: () {
                 validation(formKey, autoValidateMode);
+                NotesModel note = NotesModel(title: title!, subtitle: subtitle!, date: DateTime.now().toString(), colors: AppColors.kCustomCardColor.value);
+                BlocProvider.of<AddNotesCubit>(context).addNotesMethod(note);
               },
             ),
           ],

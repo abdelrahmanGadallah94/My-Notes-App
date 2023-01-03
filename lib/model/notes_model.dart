@@ -1,8 +1,15 @@
-class NotesModel{
-  final String title;
-  final String subtitle;
-  final String date;
-  final int colors;
+import 'package:hive_flutter/adapters.dart';
+part 'notes_model.g.dart';
 
+@HiveType(typeId: 1)
+class NotesModel extends HiveObject{
+  @HiveField(0)
+  final String title;
+  @HiveField(1)
+  final String subtitle;
+  @HiveField(2)
+  final String date;
+  @HiveField(3)
+  final int colors;
   NotesModel({required this.title, required this.subtitle, required this.date, required this.colors});
 }

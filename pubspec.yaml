@@ -30,6 +30,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   hive:
+  hive_flutter:
   bloc:
   flutter_bloc:
   flutter:
@@ -41,6 +42,8 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
+  hive_generator:
+  build_runner:
   flutter_test:
     sdk: flutter
 

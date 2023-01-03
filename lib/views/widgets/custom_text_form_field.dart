@@ -15,15 +15,18 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       maxLines: maxLines,
+      cursorColor: AppColors.kCustomCardColor,
+      cursorHeight: 30,
+      cursorWidth: 2,
       decoration:  InputDecoration(
         hintText: hintText,
           enabledBorder:  OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.kWhiteColor),
+              borderSide: const BorderSide(color: AppColors.kWhiteColor),
             borderRadius: BorderRadius.circular(20),
 
           ),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.kWhiteColor),
+              borderSide: const BorderSide(color: AppColors.kWhiteColor),
             borderRadius: BorderRadius.circular(20),
           )
       ),

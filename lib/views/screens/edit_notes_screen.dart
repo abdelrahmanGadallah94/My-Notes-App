@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_notes_app/cubit/notes_cubit/notes_cubit.dart';
 import 'package:my_notes_app/model/notes_model.dart';
 
+import '../widgets/custom_edit_note_color.dart';
 import '../widgets/custom_edit_notes_app_bar.dart';
 import '../widgets/custom_text_form_field.dart';
 
@@ -38,6 +39,8 @@ class EditNotesScreen extends StatelessWidget {
                 controller: content,
                 hintText: note.subtitle, maxLines: 7,
               ),
+              const SizedBox(height: 20,),
+              CustomEditNotesColor(note: note),
               const Spacer(flex: 6,)
             ],
           ),

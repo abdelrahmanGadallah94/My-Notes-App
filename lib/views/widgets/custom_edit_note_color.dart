@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_notes_app/cubit/add_note_cubit/add_notes_cubit.dart';
+import 'package:my_notes_app/cubit/notes_cubit/notes_cubit.dart';
+import 'package:my_notes_app/model/notes_model.dart';
 import 'package:my_notes_app/views/settings/app_colors.dart';
 
-
-class CustomNotesColor extends StatefulWidget {
-  const CustomNotesColor({Key? key}) : super(key: key);
+class CustomEditNotesColor extends StatefulWidget {
+  final NotesModel note;
+  const CustomEditNotesColor({Key? key,required this.note}) : super(key: key);
 
   @override
-  State<CustomNotesColor> createState() => _CustomNotesColorState();
+  State<CustomEditNotesColor> createState() => _CustomEditNotesColorState();
 }
 
-class _CustomNotesColorState extends State<CustomNotesColor> {
-  int currentIndex = 0;
+class _CustomEditNotesColorState extends State<CustomEditNotesColor> {
+  late int currentIndex;
+  @override
+  void initState() {
+    super.initState();
+    currentIndex = AppColors.kNotesColor.indexOf(Color(widget.note.colors));
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,8 +34,7 @@ class _CustomNotesColorState extends State<CustomNotesColor> {
                   child: GestureDetector(
                     onTap: (){
                       currentIndex = index;
-                      BlocProvider.of<AddNotesCubit>(context).color = AppColors.kNotesColor[index];
-                      setState(() {});
+                      BlocProvider.of<NotesCubit>(context).editNotesColors(index,widget.note,setState);
                     },
                     child: currentIndex == index ?  CircleAvatar(
                       radius: 35,
@@ -49,5 +54,6 @@ class _CustomNotesColorState extends State<CustomNotesColor> {
       ),
     );
   }
+
 }
 

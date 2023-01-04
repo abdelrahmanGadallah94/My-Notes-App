@@ -3,11 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:my_notes_app/views/settings/app_strings.dart';
 import '../../model/notes_model.dart';
+import '../../views/settings/app_colors.dart';
 part 'notes_state.dart';
 
 class NotesCubit extends Cubit<NotesState> {
   NotesCubit() : super(NotesInitial());
   List<NotesModel>? notes;
+
+  // show notes method
   fetchAllNotes() {
       var note = Hive.box<NotesModel>(AppStrings.kNotesBox);
       notes = note.values.toList();
@@ -15,6 +18,7 @@ class NotesCubit extends Cubit<NotesState> {
 
   }
 
+  //edit notes (title and content)
   void editNotesMethod(NotesModel note, TextEditingController title,
       TextEditingController content, BuildContext context) async{
     note.title = title.text.isEmpty ? note.title : title.text;
@@ -25,4 +29,12 @@ class NotesCubit extends Cubit<NotesState> {
     // ignore: use_build_context_synchronously
     Navigator.pop(context);
   }
+
+  // edit notes colors
+  void editNotesColors(int index,note,setState) {
+   note.colors = AppColors.kNotesColor[index].value;
+    note.save();
+    setState(() {});
+  }
+
 }

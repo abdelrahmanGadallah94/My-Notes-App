@@ -14,7 +14,6 @@ class CustomFormNotes extends StatefulWidget {
 }
 
 class _CustomFormNotesState extends State<CustomFormNotes> {
-
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
@@ -55,17 +54,17 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
               maxLines: 7,
             ),
             const SizedBox(
-              height: 30,
-            ),
-            CustomButton(
-              onTap: () {
-                BlocProvider.of<AddNotesCubit>(context).addNotesMethodAndValidation(title.text, content.text, context,formKey,autoValidateMode,setState);
-              },
+              height: 25,
             ),
             const CustomNotesColor(),
+            CustomButton(
+              onTap: () {
+                BlocProvider.of<AddNotesCubit>(context)
+                    .addNotesMethodAndValidation(title.text, content.text,
+                        context, formKey, autoValidateMode, setState,);
+              },
+            ),
           ],
         ));
   }
-
-
 }

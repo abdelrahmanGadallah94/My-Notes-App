@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:my_notes_app/cubit/notes_cubit/notes_cubit.dart';
 import 'package:my_notes_app/simple_bloc_observer.dart';
 import 'package:my_notes_app/views/screens/edit_notes_screen.dart';
 import 'package:my_notes_app/views/screens/notes_home_screen.dart';
@@ -21,14 +22,17 @@ class NotesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        AppRoutes.homeNotesRoute: (context) => const HomeNotesScreen(),
-        AppRoutes.editNotesRoute: (context) => const EditNotesScreen(),
-      },
-      initialRoute: AppRoutes.homeNotesRoute,
-      theme: ThemeData(brightness: Brightness.dark),
+    return BlocProvider(
+      create: (context) => NotesCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          AppRoutes.homeNotesRoute: (context) => const HomeNotesScreen(),
+          AppRoutes.editNotesRoute: (context) => const EditNotesScreen(),
+        },
+        initialRoute: AppRoutes.homeNotesRoute,
+        theme: ThemeData(brightness: Brightness.dark),
+      ),
     );
   }
 }

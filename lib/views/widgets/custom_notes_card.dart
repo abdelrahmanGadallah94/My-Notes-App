@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-
-import '../settings/app_colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_notes_app/cubit/notes_cubit/notes_cubit.dart';
+import 'package:my_notes_app/model/notes_model.dart';
 
 class CustomNotesCard extends StatelessWidget {
+  final NotesModel note;
   const CustomNotesCard({
+    required this.note,
     Key? key,
   }) : super(key: key);
 
@@ -13,30 +16,33 @@ class CustomNotesCard extends StatelessWidget {
       padding: const EdgeInsets.only(top: 15,bottom: 15,left: 15),
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-          color: AppColors.kCustomCardColor,
+          color: Color(note.colors),
           borderRadius: BorderRadius.circular(20)
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           ListTile(
-            title: const Text(
-              "Flutter Note",
-              style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
+            title:  Text(
+              note.title,
+              style: const TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
             ),
-            subtitle: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 15),
+            subtitle:  Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
               child: Text(
-                "My first note in my flutter note app in 2023 year",
-                style: TextStyle(height: 1.4),
+                note.subtitle,
+                style: const TextStyle(height: 1.4),
               ),
             ),
-            trailing: IconButton(onPressed: (){}, icon: const Icon(Icons.delete_sharp)),
+            trailing: IconButton(onPressed: (){
+              note.delete();
+              BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+            }, icon: const Icon(Icons.delete_sharp)),
 
           ),
-          const Padding(
-              padding: EdgeInsets.only(right: 20),
-              child: Text("25/1/2023")
+           Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: Text(note.date)
           ),
         ],
       ),

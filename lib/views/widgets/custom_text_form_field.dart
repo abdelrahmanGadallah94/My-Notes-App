@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import '../settings/app_colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
+  final TextEditingController? controller;
   final String hintText;
   final int maxLines;
   final String? Function(String?)? validator;
   final void Function(String?)? onChanged;
   const CustomTextFormField({
+    this.controller,
     this.validator,
     this.onChanged,
     Key? key,
@@ -18,6 +20,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       validator: validator,
       onSaved: onChanged,
       maxLines: maxLines,

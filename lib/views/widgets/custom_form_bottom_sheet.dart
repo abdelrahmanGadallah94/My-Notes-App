@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_notes_app/cubit/add_notes_cubit.dart';
+import 'package:my_notes_app/cubit/add_note_cubit/add_notes_cubit.dart';
+import 'package:my_notes_app/cubit/notes_cubit/notes_cubit.dart';
+import '../../cubit/add_note_cubit/add_notes_state.dart';
 import 'custom_form_notes.dart';
 
 class CustomFormBottomSheet extends StatelessWidget {
@@ -13,6 +15,14 @@ class CustomFormBottomSheet extends StatelessWidget {
     return BlocProvider(
       create: (context) => AddNotesCubit(),
       child: BlocConsumer<AddNotesCubit, AddNotesState>(
+        listener: (context, state) {
+          if (state is AddNotesSuccess) {
+            Navigator.pop(context);
+            BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+          } else if (state is AddNotesFailure) {
+            debugPrint("error: ${state.errorMessage}");
+          }
+        },
         builder: (context, state) {
           return Padding(
               padding: EdgeInsets.only(
@@ -24,13 +34,6 @@ class CustomFormBottomSheet extends StatelessWidget {
               child: const SingleChildScrollView(
                 child: CustomFormNotes(),
               ));
-        },
-        listener: (context, state) {
-          if (state is AddNotesSuccess) {
-            Navigator.pop(context);
-          } else if (state is AddNotesFailure) {
-            debugPrint("error: ${state.errorMessage}");
-          }
         },
       ),
     );

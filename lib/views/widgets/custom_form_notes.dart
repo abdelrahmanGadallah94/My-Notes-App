@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../control/notes_action_method.dart';
-import '../../control/validation_method.dart';
+import '../../control/add_notes_method.dart';
 import '../settings/app_strings.dart';
 import 'custom_button.dart';
 import 'custom_text_form_field.dart';
@@ -13,12 +12,15 @@ class CustomFormNotes extends StatefulWidget {
 }
 
 class _CustomFormNotesState extends State<CustomFormNotes> {
-  final GlobalKey<FormState> formKey = GlobalKey();
+
+  GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+
+  TextEditingController title = TextEditingController();
+  TextEditingController content = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    String? title, subtitle;
     return Form(
         key: formKey,
         autovalidateMode: autoValidateMode,
@@ -26,9 +28,7 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomTextFormField(
-              onChanged: (data) {
-                title = data;
-              },
+              controller: title,
               validator: (data) {
                 if (data?.isEmpty ?? true) {
                   return AppStrings.requiredField;
@@ -42,9 +42,7 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
               height: 15,
             ),
             CustomTextFormField(
-              onChanged: (data) {
-                subtitle = data;
-              },
+              controller: content,
               validator: (data) {
                 if (data?.isEmpty ?? true) {
                   return AppStrings.requiredField;
@@ -59,12 +57,12 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
             ),
             CustomButton(
               onTap: () {
-                validation(formKey, autoValidateMode,setState);
-                notesAction(
-                    title, subtitle, context, formKey, autoValidateMode);
+                addNotesMethod(title.text, content.text, context,formKey,autoValidateMode,setState);
               },
             ),
           ],
         ));
   }
+
+
 }

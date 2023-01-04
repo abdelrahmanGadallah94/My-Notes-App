@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_notes_app/cubit/add_notes_cubit.dart';
-
+import 'package:my_notes_app/cubit/add_note_cubit/add_notes_cubit.dart';
+import '../../cubit/add_note_cubit/add_notes_state.dart';
 import '../settings/app_colors.dart';
 import '../settings/app_strings.dart';
 
@@ -15,7 +14,7 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       child: BlocBuilder<AddNotesCubit,AddNotesState>(
         builder: (context, state) {

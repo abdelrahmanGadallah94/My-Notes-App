@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../control/add_notes_method.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_notes_app/cubit/add_note_cubit/add_notes_cubit.dart';
 import '../settings/app_strings.dart';
 import 'custom_button.dart';
 import 'custom_text_form_field.dart';
@@ -57,7 +58,7 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
             ),
             CustomButton(
               onTap: () {
-                addNotesMethod(title.text, content.text, context,formKey,autoValidateMode,setState);
+                BlocProvider.of<AddNotesCubit>(context).addNotesMethodAndValidation(title.text, content.text, context,formKey,autoValidateMode,setState);
               },
             ),
           ],

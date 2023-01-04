@@ -28,7 +28,7 @@ class _MyListOfNotesCardsState extends State<MyListOfNotesCards> {
               itemBuilder: (context, index) =>
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.editNotesRoute);
+                      Navigator.pushNamed(context, AppRoutes.editNotesRoute,arguments: notes[index]);
                     },
                     child:  CustomNotesCard(
                       note: notes[index],

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_notes_app/cubit/add_note_cubit/add_notes_cubit.dart';
 import '../settings/app_strings.dart';
 import 'custom_button.dart';
+import 'custom_notes_color.dart';
 import 'custom_text_form_field.dart';
 
 class CustomFormNotes extends StatefulWidget {
@@ -61,6 +62,7 @@ class _CustomFormNotesState extends State<CustomFormNotes> {
                 BlocProvider.of<AddNotesCubit>(context).addNotesMethodAndValidation(title.text, content.text, context,formKey,autoValidateMode,setState);
               },
             ),
+            const CustomNotesColor(),
           ],
         ));
   }

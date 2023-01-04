@@ -9,13 +9,10 @@ class NotesCubit extends Cubit<NotesState> {
   NotesCubit() : super(NotesInitial());
   List<NotesModel>? notes;
   fetchAllNotes() {
-    try {
       var note = Hive.box<NotesModel>(AppStrings.kNotesBox);
       notes = note.values.toList();
       emit(NotesSuccess());
-    } catch (e) {
-      debugPrint(e.toString());
-    }
+
   }
 
   void editNotesMethod(NotesModel note, TextEditingController title,
